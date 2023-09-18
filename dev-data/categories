@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "64a1cfa5b99767e9507e6ea7"
+  },
+  "name": "fresh food",
+  "symbol": "FRF",
+  "icon": "icon-647750bc7372e4a077555a7c-1688326053111.png",
+  "createdAt": {
+    "$date": "2023-07-02T19:27:33.182Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-02T19:27:33.182Z"
+  },
+  "__v": 0
+}]

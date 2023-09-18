@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "64a1d0dfb7379b2668226a75"
+  },
+  "name": "Bar Fish",
+  "description": "Cartoon fish from Norway",
+  "ratingsAverage": 4.5,
+  "ratingsQuantity": 0,
+  "price": 2500,
+  "currency": "XAF",
+  "quantity": 20,
+  "imageCover": "product-647755465baf00c6139b1a29-1688326366921-cover.jpeg",
+  "images": [],
+  "status": "PENDING",
+  "category": {
+    "$oid": "64a1cfa5b99767e9507e6ea7"
+  },
+  "store": {
+    "$oid": "647755465baf00c6139b1a29"
+  },
+  "createdAt": {
+    "$date": "2023-07-02T19:32:47.061Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-02T19:32:47.061Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64a1d14d592efbca611d2ce8"
+  },
+  "name": "Sardin",
+  "description": "Sardin fish",
+  "ratingsAverage": 0,
+  "ratingsQuantity": 1,
+  "price": 500,
+  "currency": "XAF",
+  "quantity": 100,
+  "imageCover": "product-647755465baf00c6139b1a29-1688326477208-cover.jpeg",
+  "images": [],
+  "status": "AVAILABLE",
+  "category": {
+    "$oid": "64a1cfa5b99767e9507e6ea7"
+  },
+  "store": {
+    "$oid": "647755465baf00c6139b1a29"
+  },
+  "createdAt": {
+    "$date": "2023-07-02T19:34:37.303Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-02T19:54:12.909Z"
+  },
+  "__v": 0
+}]

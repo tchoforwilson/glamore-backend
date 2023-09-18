@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "647755465baf00c6139b1a29"
+  },
+  "storename": "DunPay",
+  "user": {
+    "$oid": "647755095baf00c6139b1a25"
+  },
+  "createdAt": {
+    "$date": "2023-05-31T14:10:14.053Z"
+  },
+  "updatedAt": {
+    "$date": "2023-06-04T18:11:42.782Z"
+  },
+  "__v": 0,
+  "mail": "dunpay@example.io",
+  "logo": "logo-647755465baf00c6139b1a29-1685902302486.png"
+},{
+  "_id": {
+    "$oid": "6495b8ef531627f8ef388a3f"
+  },
+  "name": "The Bunch Shop",
+  "user": {
+    "$oid": "64957fd5027e89dcbd5d461f"
+  },
+  "createdAt": {
+    "$date": "2023-06-23T15:23:27.903Z"
+  },
+  "updatedAt": {
+    "$date": "2023-06-23T15:23:27.903Z"
+  },
+  "__v": 0
+}]

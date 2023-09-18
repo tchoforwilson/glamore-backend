@@ -1,0 +1,137 @@
+[{
+  "_id": {
+    "$oid": "647750bc7372e4a077555a7c"
+  },
+  "name": "Best admin",
+  "email": "admin@example.com",
+  "role": "ADMIN",
+  "password": "$2b$12$nMtAYnAlJ7VOl8ypdo9ANOof2xo7SZJZ5goBY3YTkARTWsAQrs1fy",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-05-31T13:50:52.320Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-31T13:50:52.320Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647750d87372e4a077555a7e"
+  },
+  "name": "Mary James",
+  "email": "mary@example.com",
+  "role": "CUSTOMER",
+  "password": "$2b$12$uq1A8pFD1UNwnvfDCz5ZsuGLdBn0g85ZGOGs4EBe3v76AQBZmwSKu",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-05-31T13:51:20.210Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-31T13:51:20.210Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647755095baf00c6139b1a25"
+  },
+  "name": "Fred Brown",
+  "email": "brown@example.com",
+  "role": "GROCER",
+  "password": "$2b$12$4/fqgU73KUc4oc3BzKe1k.gZyqO/8ou2cw6DAsQdS.4JO795BjxE.",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-05-31T14:09:13.644Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-31T14:09:13.644Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6490de9758884a6f7a2ad7c3"
+  },
+  "name": "Fred Stones",
+  "email": "fred@example.io",
+  "emailValidated": false,
+  "newEmail": true,
+  "phoneValidated": false,
+  "newPhone": true,
+  "twoFactorsAuth": false,
+  "role": "CUSTOMER",
+  "photo": "default.jpg",
+  "password": "$2b$12$VSgdefJYiYpLW/N7ad5ATuHq4lW0YlQZiBOSHuM2iUXHKx6H1DWkK",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-06-19T23:02:47.054Z"
+  },
+  "updatedAt": {
+    "$date": "2023-06-19T23:02:47.054Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64957fd5027e89dcbd5d461f"
+  },
+  "name": "Richard Band",
+  "email": "richard@example.io",
+  "emailValidated": false,
+  "newEmail": true,
+  "phoneValidated": false,
+  "newPhone": true,
+  "twoFactorsAuth": false,
+  "role": "GROCER",
+  "photo": "default.jpg",
+  "password": "$2b$12$cujUDH70mSF0rnhy7SFWJujDR/FNBIEHY3Ct/sRqJLA22/n2s0qGO",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-06-23T11:19:49.598Z"
+  },
+  "updatedAt": {
+    "$date": "2023-06-23T11:19:49.598Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64af9ce99ade40a15473ec21"
+  },
+  "name": "Mark Macmillan",
+  "email": "mark@example.io",
+  "emailValidated": false,
+  "newEmail": true,
+  "phoneValidated": false,
+  "newPhone": true,
+  "twoFactorsAuth": false,
+  "role": "CUSTOMER",
+  "photo": "user-64af9ce99ade40a15473ec21-1689230669907.jpeg",
+  "password": "$2b$12$uYDaoiWYBXjeIeuvuhl0bOb7u25cn83eXhgLI198EIwlmFtTJkjKW",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-07-13T06:42:49.895Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-13T06:44:30.165Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64af9d9d293b219468f27db1"
+  },
+  "name": "Stephani Freeman",
+  "email": "freeman@example.io",
+  "emailValidated": false,
+  "newEmail": true,
+  "phoneValidated": false,
+  "newPhone": true,
+  "twoFactorsAuth": false,
+  "role": "CUSTOMER",
+  "photo": "default.jpg",
+  "password": "$2b$12$.GOhtU1sYA8wLFjeGob6Ue8gd7Pk35W2gPtxtt0VswDdiIWbc9Vk6",
+  "active": true,
+  "createdAt": {
+    "$date": "2023-07-13T06:45:49.637Z"
+  },
+  "updatedAt": {
+    "$date": "2023-07-13T06:45:49.637Z"
+  },
+  "__v": 0
+}]
