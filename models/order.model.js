@@ -35,6 +35,10 @@ const orderSchema = new Schema(
       },
       default: ePaymentMethod.MOBILE_MONEY,
     },
+    code: {
+      type: String,
+      required: [true, 'Order code is required'],
+    },
     paid: {
       type: Boolean,
       default: true,
@@ -47,7 +51,7 @@ const orderSchema = new Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-  }
+  },
 );
 
 orderSchema.pre(/^find/, function (next) {
