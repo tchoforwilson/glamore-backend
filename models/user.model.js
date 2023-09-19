@@ -58,6 +58,7 @@ const userSchema = new Schema(
       enum: [...Object.values(eUserRole)],
       default: eUserRole.CUSTOMER,
     },
+    backgroundImage: String,
     photo: {
       type: String,
       default: 'default.jpg',
