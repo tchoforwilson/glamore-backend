@@ -80,13 +80,31 @@ const productSchema = new Schema(
       ref: 'Store',
       required: [true, 'Product must belong to a store'],
     },
+    gender: {
+      type: String,
+      enum: {
+        values: ['Male', 'Female', 'All'],
+        message: 'Gender must either be Male, Female or All',
+      },
+      default: 'All',
+    },
+    colors: [Array],
+    materials: [Array],
+    isRenewable: {
+      type: Boolean,
+      default: true,
+    },
+    isPackaged: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: {
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-  }
+  },
 );
 
 /**
@@ -100,7 +118,7 @@ productSchema.pre('findOneAndUpdate', function (next) {
 
   if (priceDiscount && price && priceDiscount >= price) {
     return next(
-      new AppError('Discount price must be less than regular price', 400)
+      new AppError('Discount price must be less than regular price', 400),
     );
   }
 
@@ -120,7 +138,7 @@ productSchema.pre('findOneAndUpdate', function (next) {
 productSchema.pre('save', function (next) {
   if (this.priceDiscount && this.priceDiscount >= this.price) {
     return next(
-      new AppError('Discount price must be less than regular price', 400)
+      new AppError('Discount price must be less than regular price', 400),
     );
   }
 
