@@ -80,6 +80,11 @@ const productSchema = new Schema(
       ref: 'Store',
       required: [true, 'Product must belong to a store'],
     },
+    review: {
+      type: Schema.Types.ObjectId,
+      ref: 'Review',
+      required: [true, 'A review must belong to a product'],
+    },
     gender: {
       type: String,
       enum: {
@@ -88,8 +93,8 @@ const productSchema = new Schema(
       },
       default: 'all',
     },
-    colors: [Array],
-    materials: [Array],
+    colors: Array,
+    materials: Array,
     isRenewable: {
       type: Boolean,
       default: true,
