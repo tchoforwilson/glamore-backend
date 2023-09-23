@@ -5,6 +5,6 @@
 export default {
   ADMIN: 'ADMIN', // 'ADMIN'
   EMPLOYEE: 'EMPLOYEE', // 'EMPLOYEE'
-  GROCER: 'STORE', // 'STORE'
+  STORE: 'STORE', // 'STORE'
   CUSTOMER: 'CUSTOMER', // 'CUSTOMER'
 };
