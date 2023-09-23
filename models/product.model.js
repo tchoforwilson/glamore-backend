@@ -83,10 +83,10 @@ const productSchema = new Schema(
     gender: {
       type: String,
       enum: {
-        values: ['Male', 'Female', 'All'],
+        values: ['male', 'female', 'all'],
         message: 'Gender must either be Male, Female or All',
       },
-      default: 'All',
+      default: 'all',
     },
     colors: [Array],
     materials: [Array],
