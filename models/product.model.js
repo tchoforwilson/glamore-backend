@@ -56,9 +56,9 @@ const productSchema = new Schema(
       },
       default: eSupportedCurrency.XAF,
     },
-    quantity: {
+    stock: {
       type: Number,
-      required: [true, 'Please provide the quantity of the product'],
+      required: [true, 'Please provide the stock of the product'],
     },
     imageCover: {
       type: String,
@@ -92,12 +92,21 @@ const productSchema = new Schema(
     materials: [Array],
     isRenewable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     isPackaged: {
       type: Boolean,
-      default: true,
+      default: false,
     },
+    twoForOne: {
+      type: Boolean,
+      default: false,
+    },
+    coupon: {
+      type: Boolean,
+      default: false,
+    },
+    couponCode: String,
   },
   {
     timestamps: {
