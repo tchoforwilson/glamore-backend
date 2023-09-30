@@ -36,4 +36,6 @@ export default {
   getAllCategories: factory.getAll(Category),
   updateCategory: factory.updateOne(Category),
   deleteCategory: factory.deleteOne(Category),
+  searchCategory: factory.search(Category),
+  countCategories: factory.count(Category),
 };
