@@ -76,4 +76,6 @@ export default {
   getProduct: factory.getOne(Product, { path: 'store', select: '-__v' }),
   getAllProducts: factory.getAll(Product),
   deleteProduct: factory.deleteOne(Product),
+  searchProduct: factory.search(Product),
+  countProducts: factory.count(Product),
 };
