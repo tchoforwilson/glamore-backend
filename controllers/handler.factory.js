@@ -87,7 +87,12 @@ const getAll = (Model) =>
     // 1. To allow for nested GET routes
     let filter = {};
 
-    if (req.params.houseId) filter = { store: req.params.houseId };
+    if (req.params.categoryId) filter = { category: req.params.categoryId };
+    if (req.params.productId) filter = { product: req.params.productId };
+    if (req.params.storeId) filter = { store: req.params.storeId };
+    if (req.params.orderId) filter = { order: req.params.orderId };
+    if (req.params.reviewId) filter = { review: req.params.reviewId };
+    if (req.params.cartId) filter = { cart: req.params.cartId };
 
     // 2. Build search regex for name
     if (req.query.name)
@@ -132,10 +137,61 @@ const deleteOne = (Model) =>
     });
   });
 
+/**
+ * @breif Search from a collection
+ * @param {Collection} Model -> Database collection
+ * @returns
+ */
+const search = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // 1. Get the query
+    const { q } = req.query;
+
+    // 2. Get the results
+    const results = await Model.find({
+      name: { $regex: q, $options: 'i' },
+    });
+
+    // 3. Send the response
+    res.status(200).json({
+      status: 'success',
+      data: results,
+    });
+  });
+
+/**
+ * @brief Count the number of document in a collection
+ * @param {Collection} Model  -> Model
+ * @returns {Function}
+ */
+const count = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // 1. Build filter
+    let filtered = {};
+    if (req.params.storeId) filtered.store = req.params.storeId;
+    if (req.params.categoryId) filtered.category = req.params.categoryId;
+    if (req.params.orderId) filtered.order = req.params.order;
+    if (req.params.productId) filtered.product = req.params.productId;
+
+    // 2. Create search query
+    const searchQuery = { ...filtered, ...req.query };
+
+    // 3. Execute query
+    const count = await Model.count(searchQuery);
+
+    // 4. Send response
+    res.status(200).json({
+      status: 'success',
+      data: count,
+    });
+  });
+
 export default {
   createOne,
   getOne,
   updateOne,
   getAll,
   deleteOne,
+  search,
+  count,
 };
