@@ -21,6 +21,8 @@ import reviewRouter from './routes/review.routes.js';
 import cartRouter from './routes/cart.routes.js';
 import orderRouter from './routes/order.routes.js';
 import deliveryRouter from './routes/delivery.routes.js';
+import followRouter from './routes/follow.routes.js';
+import favoriteRouter from './routes/favorite.routes.js';
 
 // Start express app
 const app = express();
@@ -69,6 +71,7 @@ app.use(`${config.prefix}/reviews`, reviewRouter);
 app.use(`${config.prefix}/carts`, cartRouter);
 app.use(`${config.prefix}/orders`, orderRouter);
 app.use(`${config.prefix}/deliveries`, deliveryRouter);
+app.use(`${config.prefix}/favorites`, favoriteRouter);
 // const io = app.get('io');
 io.on('connection', (socket) => {
   console.log('Connection established');
