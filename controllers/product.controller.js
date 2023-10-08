@@ -60,7 +60,7 @@ const resizeProductImages = catchAsync(async (req, res, next) => {
           .toFile(`public/images/products/${filename}`);
 
         req.body.images.push(filename);
-      })
+      }),
     );
   }
 
@@ -76,4 +76,6 @@ export default {
   getProduct: factory.getOne(Product, { path: 'store', select: '-__v' }),
   getAllProducts: factory.getAll(Product),
   deleteProduct: factory.deleteOne(Product),
+  searchProduct: factory.search(Product),
+  countProducts: factory.count(Product),
 };

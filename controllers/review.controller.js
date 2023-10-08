@@ -15,4 +15,5 @@ export default {
   createReview: factory.createOne(Review),
   updateReview: factory.updateOne(Review),
   deleteReview: factory.deleteOne(Review),
+  countReviews: factory.count(Review),
 };

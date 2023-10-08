@@ -51,4 +51,6 @@ export default {
   getStore: factory.getOne(Store, { path: 'Product', select: '-__v' }),
   updateStore: factory.updateOne(Store),
   deleteStore: factory.deleteOne(Store),
+  searchStore: factory.search(Store),
+  countStores: factory.count(Store),
 };
