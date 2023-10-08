@@ -41,4 +41,8 @@ export default {
    * @breif Delete an existing cart
    */
   deleteCart: factory.deleteOne(Cart),
+  /**
+   * @breif Count number of carts
+   */
+  countCarts: factory.count(Cart),
 };

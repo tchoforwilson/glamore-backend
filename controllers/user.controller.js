@@ -64,8 +64,8 @@ const registerUser = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         "User already exist's with this email",
-        StatusCode.BAD_REQUEST
-      )
+        StatusCode.BAD_REQUEST,
+      ),
     );
   }
 
@@ -78,7 +78,7 @@ const registerUser = catchAsync(async (req, res, next) => {
     filteredBody.role !== eUserRole.GROCER
   ) {
     return next(
-      new AppError('Invalid role specified!', StatusCode.BAD_REQUEST)
+      new AppError('Invalid role specified!', StatusCode.BAD_REQUEST),
     );
   }
 
@@ -112,8 +112,8 @@ const updateMe = catchAsync(async (req, res, next) => {
     return next(
       new AppError(
         'This route is not for password updates. Please use /updateMyPassword.',
-        StatusCode.BAD_REQUEST
-      )
+        StatusCode.BAD_REQUEST,
+      ),
     );
   }
 
@@ -180,4 +180,6 @@ export default {
   getAllUsers,
   updateUser,
   deleteUser,
+  searchUser: factory.search(User),
+  countUsers: factory.count(User),
 };

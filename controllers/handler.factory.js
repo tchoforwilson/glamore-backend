@@ -138,9 +138,15 @@ const deleteOne = (Model) =>
   });
 
 /**
+<<<<<<< HEAD
  * @breif Search from a collection
  * @param {Collection} Model -> Database collection
  * @returns
+=======
+ * @breif Search for documents marching request name
+ * @param {Collection} Model Database collection/model
+ * @returns {function}
+>>>>>>> jeff
  */
 const search = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -161,16 +167,19 @@ const search = (Model) =>
 
 /**
  * @brief Count the number of document in a collection
+<<<<<<< HEAD
  * @param {Collection} Model  -> Model
+=======
+ * @param {Collection} Model  Database model/collection
+>>>>>>> jeff
  * @returns {Function}
  */
 const count = (Model) =>
   catchAsync(async (req, res, next) => {
     // 1. Build filter
     let filtered = {};
-    if (req.params.storeId) filtered.store = req.params.storeId;
     if (req.params.categoryId) filtered.category = req.params.categoryId;
-    if (req.params.orderId) filtered.order = req.params.order;
+    if (req.params.storeId) filtered.store = req.params.storeId;
     if (req.params.productId) filtered.product = req.params.productId;
 
     // 2. Create search query

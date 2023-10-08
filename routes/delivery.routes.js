@@ -7,6 +7,8 @@ const router = Router();
 
 router.use(authController.protect);
 
+router.route('/count', deliveryController.countDeliveries);
+
 router.route(
   '/asign-to-me',
   authController.restrictTo(eUserRole.EMPLOYEE),

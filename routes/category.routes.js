@@ -8,6 +8,9 @@ const router = Router();
 
 router.use('/:categoryId/products', productRouter);
 
+router.route('/search', categoryController.searchCategory);
+router.route('/count', categoryController.countCategories);
+
 router
   .route('/')
   .post(

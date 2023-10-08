@@ -19,4 +19,5 @@ export default {
   updateDelivery: factory.updateOne(Delivery),
   getDelivery: factory.getOne(Delivery, { path: 'Order' }),
   deleteDelivery: factory.deleteOne(Delivery),
+  countDeliveries: factory.count(Delivery),
 };

@@ -8,6 +8,9 @@ const router = Router();
 // Protected routes
 router.use(authController.protect);
 
+router.route('/search', userController.searchUser);
+router.route('/count', userController.countUsers);
+
 router.post(
   '/register',
   authController.restrictTo(UserRole.ADMIN),
