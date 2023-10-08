@@ -132,10 +132,33 @@ const deleteOne = (Model) =>
     });
   });
 
+/**
+ * @breif Search for documents marching request name
+ * @param {Collection} Model Database collection/model
+ * @returns {function}
+ */
+const search = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // 1. Get the query
+    const { q } = req.query;
+
+    // 2. Get the results
+    const results = await Model.find({
+      name: { $regex: q, $options: 'i' },
+    });
+
+    // 3. Send the response
+    res.status(200).json({
+      status: 'success',
+      data: results,
+    });
+  });
+
 export default {
   createOne,
   getOne,
   updateOne,
   getAll,
   deleteOne,
+  search,
 };
