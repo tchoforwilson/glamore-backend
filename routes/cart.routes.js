@@ -6,12 +6,14 @@ const router = Router({ mergeParams: true });
 
 router.use(authController.protect);
 
+router.route('/count', cartController.countCarts);
+
 router
   .route('/')
   .post(cartController.setCartCustomer, cartController.createCart)
   .get(
     authController.restrictTo('admin', 'employee'),
-    cartController.getAllCarts
+    cartController.getAllCarts,
   );
 
 router
