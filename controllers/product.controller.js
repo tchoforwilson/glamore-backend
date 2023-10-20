@@ -33,9 +33,10 @@ const resizeProductImages = catchAsync(async (req, res, next) => {
   // 1. Check if file exists
   if (!req.files) return next();
 
+  const id = req.params.id || req.user?.store?.id; // unqiue id for product image
+
   // 2. Upload Cover image
   if (req.files.imageCover) {
-    const id = req.params.id || req.user.store.id; // unqiue id for product image
     req.body.imageCover = `product-${id}-${Date.now()}-cover.jpeg`;
 
     await sharp(req.files.imageCover[0].buffer)
@@ -60,7 +61,7 @@ const resizeProductImages = catchAsync(async (req, res, next) => {
           .toFile(`public/images/products/${filename}`);
 
         req.body.images.push(filename);
-      })
+      }),
     );
   }
 

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import authController from '../controllers/auth.controller.js';
 import productController from '../controllers/product.controller.js';
 import eUserRole from '../utilities/enums/e.user-role.js';
@@ -10,7 +9,7 @@ router
   .route('/')
   .post(
     authController.protect,
-    authController.restrictTo(eUserRole.STORE),
+    // authController.restrictTo(eUserRole.STORE),
     productController.uploadProductImages,
     productController.resizeProductImages,
     productController.setProductStoreId,
@@ -35,3 +34,4 @@ router
   );
 
 export default router;
+
