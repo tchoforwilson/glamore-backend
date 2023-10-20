@@ -15,4 +15,5 @@ export default {
   getOrder: factory.getOne(Order, { path: 'products.item' }),
   updateOrder: factory.updateOne(Order),
   deleteOrder: factory.deleteOne(Order),
+  countOrders: factory.count(Order),
 };

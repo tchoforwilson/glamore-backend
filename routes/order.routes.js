@@ -7,11 +7,13 @@ const router = Router({ mergeParams: true });
 
 router.use(authController.protect);
 
+router.route('/count', orderController.countOrders);
+
 router.route(
   '/my-orders',
   authController.restrictTo(eUserRole.CUSTOMER),
   orderController.setOrderUserId,
-  orderController.getOne
+  orderController.getOne,
 );
 
 router
@@ -21,9 +23,9 @@ router
     authController.restrictTo(
       eUserRole.ADMIN,
       eUserRole.EMPLOYEE,
-      eUserRole.GROCER
+      eUserRole.GROCER,
     ),
-    orderController.getAllOrders
+    orderController.getAllOrders,
   );
 
 router
@@ -33,13 +35,13 @@ router
     authController.restrictTo(
       eUserRole.ADMIN,
       eUserRole.CUSTOMER,
-      eUserRole.GROCER
+      eUserRole.GROCER,
     ),
-    orderController.updateOrder
+    orderController.updateOrder,
   )
   .delete(
     authController.restrictTo(eUserRole.ADMIN, eUserRole.CUSTOMER),
-    orderController.deleteOrder
+    orderController.deleteOrder,
   );
 
 export default router;

@@ -11,13 +11,15 @@ const router = Router({ mergeParams: true });
 // POST /store/234fad4/products
 // GET /store/234fad4/products
 router.use('/:storeId/products', productRouter);
+router.route('/search', storeController.searchStore);
+router.route('/count', storeController.countStores);
 
 router.route(
   '/my-store',
   authController.protect,
   authController.restrictTo(eUserRole.GROCER),
   storeController.setStoreId,
-  storeController.getStore
+  storeController.getStore,
 );
 
 router
@@ -27,7 +29,7 @@ router
     authController.restrictTo(eUserRole.ADMIN),
     storeController.uploadLogo,
     storeController.resizeLogo,
-    storeController.createStore
+    storeController.createStore,
   )
   .get(storeController.getAllStores);
 
@@ -39,12 +41,12 @@ router
     authController.restrictTo(eUserRole.ADMIN, eUserRole.GROCER),
     storeController.uploadLogo,
     storeController.resizeLogo,
-    storeController.updateStore
+    storeController.updateStore,
   )
   .delete(
     authController.protect,
     authController.restrictTo(eUserRole.ADMIN, eUserRole.GROCER),
-    storeController.deleteStore
+    storeController.deleteStore,
   );
 
 export default router;

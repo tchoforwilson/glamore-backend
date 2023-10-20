@@ -1,15 +1,21 @@
 import { Schema, model } from 'mongoose';
 import ePaymentMethod from '../utilities/enums/e.payment-method.js';
+import eOrderStatus from '../utilities/enums/e.order-status.js';
 
 const orderSchema = new Schema(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: [true, 'Order must be done by a user'],
+    },
     date: {
       type: Date,
       default: Date.now,
     },
     products: [
       {
-        item: {
+        product: {
           type: Schema.Types.ObjectId,
           ref: 'Product',
           required: [true, 'Product required to be ordered'],
@@ -21,12 +27,7 @@ const orderSchema = new Schema(
         price: Number,
       },
     ],
-    totalAmount: Number,
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: [true, 'Order must be done by a user'],
-    },
+    total: Number,
     payment: {
       type: String,
       enum: {
@@ -42,6 +43,11 @@ const orderSchema = new Schema(
     paid: {
       type: Boolean,
       default: true,
+    },
+    status: {
+      type: String,
+      enum: [...Object.values(eOrderStatus)],
+      required: true,
     },
   },
   {

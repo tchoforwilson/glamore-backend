@@ -13,7 +13,13 @@ const multerStorage = multer.memoryStorage();
  * @param {Callback} cb -> Callback function
  */
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  // Allowed extensions
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check extension
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime type
+  const mimetype = filetypes.test(file.mimetype);
+  if (mimetype.startsWith('image') && extname) {
     cb(null, true);
   } else {
     cb(new AppError('Not an image! Please upload only images.', 400), false);

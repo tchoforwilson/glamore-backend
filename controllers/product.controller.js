@@ -40,7 +40,7 @@ const resizeProductImages = catchAsync(async (req, res, next) => {
     req.body.imageCover = `product-${id}-${Date.now()}-cover.jpeg`;
 
     await sharp(req.files.imageCover[0].buffer)
-      .resize(800, 800)
+      .resize(500, 500)
       .toFormat('jpeg')
       .jpeg({ quality: 90 })
       .toFile(`public/images/products/${req.body.imageCover}`);
@@ -77,4 +77,6 @@ export default {
   getProduct: factory.getOne(Product, { path: 'store', select: '-__v' }),
   getAllProducts: factory.getAll(Product),
   deleteProduct: factory.deleteOne(Product),
+  searchProduct: factory.search(Product),
+  countProducts: factory.count(Product),
 };

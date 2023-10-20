@@ -7,13 +7,15 @@ const router = Router({ mergeParams: true });
 
 router.use(authController.protect);
 
+router.route('/count', reviewController.countReviews);
+
 router
   .route('/')
   .get(reviewController.getAllReviews)
   .post(
     authController.restrictTo(eUserRole.CUSTOMER),
     reviewController.setProductUserIds,
-    reviewController.createReview
+    reviewController.createReview,
   );
 
 router
@@ -21,11 +23,11 @@ router
   .get(reviewController.getReview)
   .patch(
     authController.restrictTo(eUserRole.ADMIN, eUserRole.CUSTOMER),
-    reviewController.updateReview
+    reviewController.updateReview,
   )
   .delete(
     authController.restrictTo(eUserRole.ADMIN, eUserRole.CUSTOMER),
-    reviewController.deleteReview
+    reviewController.deleteReview,
   );
 
 export default router;
