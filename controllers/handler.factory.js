@@ -122,14 +122,17 @@ const getAll = (Model) =>
  */
 const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
+    // 1. Get item
     const doc = await Model.findByIdAndDelete(req.params.id);
 
+    // 2. Check if item exists
     if (!doc) {
       return next(
         new AppError('No document found with that ID', eStatusCode.NOT_FOUND),
       );
     }
 
+    // 3. Send response
     res.status(eStatusCode.NO_CONTENT).json({
       status: 'success',
       message: 'Successfully deleted',
@@ -138,15 +141,9 @@ const deleteOne = (Model) =>
   });
 
 /**
-<<<<<<< HEAD
- * @breif Search from a collection
- * @param {Collection} Model -> Database collection
- * @returns
-=======
  * @breif Search for documents marching request name
  * @param {Collection} Model Database collection/model
  * @returns {function}
->>>>>>> jeff
  */
 const search = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -167,11 +164,7 @@ const search = (Model) =>
 
 /**
  * @brief Count the number of document in a collection
-<<<<<<< HEAD
- * @param {Collection} Model  -> Model
-=======
  * @param {Collection} Model  Database model/collection
->>>>>>> jeff
  * @returns {Function}
  */
 const count = (Model) =>
@@ -184,6 +177,7 @@ const count = (Model) =>
 
     // 2. Create search query
     const searchQuery = { ...filtered, ...req.query };
+    console.log(searchQuery);
 
     // 3. Execute query
     const count = await Model.count(searchQuery);
