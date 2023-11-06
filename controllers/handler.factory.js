@@ -10,8 +10,10 @@ import eStatusCode from '../utilities/enums/e.status-code.js';
  */
 const createOne = (Model) =>
   catchAsync(async (req, res, next) => {
+    // 1. Create a new item
     const doc = await Model.create(req.body);
 
+    // 2. Send response
     res.status(eStatusCode.CREATED).json({
       status: 'success',
       message: 'Successfully created',
@@ -59,16 +61,19 @@ const getOne = (Model, popOptions) =>
  */
 const updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
+    // 1. Get item by id
     const doc = await Model.findOneAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
+    // 2. Check if item exists
     if (!doc)
       return next(
         new AppError('No document found with that ID!', eStatusCode.NOT_FOUND),
       );
 
+    // 3. Send response
     res.status(eStatusCode.SUCCESS).json({
       status: 'success',
       message: 'Successfully updated',
