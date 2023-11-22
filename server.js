@@ -10,7 +10,10 @@ process.on('uncaughtException', (err) => {
 import server from './app.js';
 
 // Connect to database
-const DATABASE = config.db.db.replace('<PASSWORD>', config.db.password);
+const DATABASE = config.db.dev;
+if (config.env === 'production') {
+  DATABASE = config.db.prod;
+}
 
 // Connect to MongoDB
 mongoose
