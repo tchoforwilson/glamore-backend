@@ -71,6 +71,7 @@ app.use(`${config.prefix}/reviews`, reviewRouter);
 app.use(`${config.prefix}/carts`, cartRouter);
 app.use(`${config.prefix}/orders`, orderRouter);
 app.use(`${config.prefix}/deliveries`, deliveryRouter);
+app.use(`${config.prefix}/follows`, followRouter);
 app.use(`${config.prefix}/favorites`, favoriteRouter);
 // const io = app.get('io');
 io.on('connection', (socket) => {
