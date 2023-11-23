@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: './.env' });
+dotenv.config({ path: './.env.development' });
 
 /**
  * @breif Configuration object to hold all environmental variables
