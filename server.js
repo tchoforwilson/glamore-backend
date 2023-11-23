@@ -10,10 +10,11 @@ process.on('uncaughtException', (err) => {
 import server from './app.js';
 
 // Connect to database
-const DATABASE = config.db.dev;
-if (config.env === 'production') {
-  DATABASE = config.db.prod;
-}
+let DATABASE = config.db.dev;
+// Environment
+let env = config.env;
+if (env === 'production') DATABASE = config.db.prod;
+if (env === 'test') DATABASE = config.db.test;
 
 // Connect to MongoDB
 mongoose
