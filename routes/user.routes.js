@@ -1,19 +1,29 @@
 import { Router } from 'express';
 import authController from '../controllers/auth.controller.js';
 import userController from '../controllers/user.controller.js';
-import UserRole from '../utilities/enums/e.user-role.js';
+import favoriteRouter from './favorite.routes.js';
+import followRouter from './follow.routes.js';
+import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router();
 
 // Protected routes
 router.use(authController.protect);
 
-router.route('/search', userController.searchUser);
-router.route('/count', userController.countUsers);
+router.route(
+  '/search',
+  authController.restrictTo(eUserRole.ADMIN),
+  userController.searchUser,
+);
+router.route(
+  '/count',
+  authController.restrictTo(eUserRole.ADMIN),
+  userController.countUsers,
+);
 
 router.post(
   '/register',
-  authController.restrictTo(UserRole.ADMIN),
+  authController.restrictTo(eUserRole.ADMIN),
   userController.registerUser,
 );
 
@@ -25,9 +35,11 @@ router.patch(
   userController.updateMe,
 );
 router.patch('/deleteMe', userController.deleteMe);
+router.get('/my-shops', userController.setUserIdParam, followRouter);
+router.get('/my-favorites', userController.setUserIdParam, favoriteRouter);
 
 // Restrict all route after this to admin
-router.use(authController.restrictTo(UserRole.ADMIN));
+router.use(authController.restrictTo(eUserRole.ADMIN));
 
 router
   .route('/')
