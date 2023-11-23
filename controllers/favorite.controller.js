@@ -1,11 +1,12 @@
 import Favorite from '../models/favorite.model.js';
+import factory from './handler.factory.js';
 import catchAsync from '../utilities/catchAsync.js';
 
 /**
  * @breif Set Customer product id if it doesn't exist
  * in the request body.
  */
-const setCustomerProductId = (req, res, next) => {
+const setUserProductIds = (req, res, next) => {
   if (!req.body.product) req.body.product = req.params.productId;
   if (!req.body.user) req.body.user = req.user.id;
   next();
@@ -16,7 +17,7 @@ const setCustomerProductId = (req, res, next) => {
  */
 const toggleFavorite = catchAsync(async (req, res, next) => {
   // 1. Get Favorite
-  const favorite = await Favorite.find({
+  const favorite = await Favorite.findOne({
     user: req.body.user,
     product: req.body.product,
   });
@@ -27,7 +28,10 @@ const toggleFavorite = catchAsync(async (req, res, next) => {
     await Favorite.create({ user: req.body.user, product: req.body.product });
   } else {
     // a. It exist? delete
-    await Favorite.delete({ user: req.body.user, product: req.body.product });
+    await Favorite.deleteOne({
+      user: req.body.user,
+      product: req.body.product,
+    });
   }
 
   // 3. Send resposne
@@ -43,7 +47,7 @@ const toggleFavorite = catchAsync(async (req, res, next) => {
  */
 const isFavorite = catchAsync(async (req, res, next) => {
   // 1. Gest Favorite
-  const favorite = await Favorite.find({
+  const favorite = await Favorite.findOne({
     user: req.body.user,
     product: req.body.product,
   });
@@ -56,7 +60,8 @@ const isFavorite = catchAsync(async (req, res, next) => {
 });
 
 export default {
-  setCustomerProductId,
+  setUserProductIds,
   toggleFavorite,
   isFavorite,
+  getAllFavorites: factory.getAll(Favorite),
 };
