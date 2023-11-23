@@ -56,6 +56,14 @@ const getMe = (req, res, next) => {
   next();
 };
 
+/**
+ * @breif Set user id as parameter if it doesn't exist
+ */
+const setUserIdParam = (req, res, next) => {
+  if (!req.params.userId) req.params.userId = req.user.id;
+  next();
+};
+
 const registerUser = catchAsync(async (req, res, next) => {
   // 1. Check if user already exists
   const user = await User.findOne({ email: req.body.email });
@@ -172,6 +180,7 @@ export default {
   uploadUserPhoto,
   resizeUserPhoto,
   getMe,
+  setUserIdParam,
   registerUser,
   updateMe,
   deleteMe,
