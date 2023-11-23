@@ -1,11 +1,12 @@
 import Follow from '../models/follow.model.js';
+import factory from './handler.factory.js';
 import catchAsync from '../utilities/catchAsync.js';
 
 /**
  * @breif Set Customer store id if it doesn't exist
  * in the request body.
  */
-const setCustomerStoreId = (req, res, next) => {
+const setUserStoreIds = (req, res, next) => {
   if (!req.body.store) req.body.store = req.params.storeId;
   if (!req.body.user) req.body.user = req.user.id;
   next();
@@ -16,7 +17,7 @@ const setCustomerStoreId = (req, res, next) => {
  */
 const toggleFollow = catchAsync(async (req, res, next) => {
   // 1. Get follow
-  const follow = await Follow.find({
+  const follow = await Follow.findOne({
     user: req.body.user,
     store: req.body.store,
   });
@@ -27,7 +28,7 @@ const toggleFollow = catchAsync(async (req, res, next) => {
     await Follow.create({ user: req.body.user, store: req.body.store });
   } else {
     // a. It exist? delete
-    await Follow.delete({ user: req.body.user, store: req.body.store });
+    await Follow.deleteOne({ user: req.body.user, store: req.body.store });
   }
 
   // 3. Send resposne
@@ -43,7 +44,7 @@ const toggleFollow = catchAsync(async (req, res, next) => {
  */
 const isFollowing = catchAsync(async (req, res, next) => {
   // 1. Gest follow
-  const follow = await Follow.find({
+  const follow = await Follow.findOne({
     user: req.body.user,
     store: req.body.store,
   });
@@ -56,7 +57,8 @@ const isFollowing = catchAsync(async (req, res, next) => {
 });
 
 export default {
-  setCustomerStoreId,
+  setUserStoreIds,
   toggleFollow,
   isFollowing,
+  getAllFollows: factory.getAll(Follow),
 };
