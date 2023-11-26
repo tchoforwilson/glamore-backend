@@ -22,10 +22,7 @@ const productSchema = new Schema(
       required: [true, 'Please provide a description of the product'],
     },
     brand: String,
-    measurement: {
-      value: Number,
-      unit: String,
-    },
+    size: String,
     ratingsAverage: {
       type: Number,
       default: 4.5,
@@ -82,10 +79,6 @@ const productSchema = new Schema(
     },
     gender: {
       type: String,
-      enum: {
-        values: ['male', 'female', 'all'],
-        message: 'Gender must either be Male, Female or All',
-      },
       default: 'all',
     },
     colors: [Array],
@@ -94,7 +87,7 @@ const productSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    isPackaged: {
+    isPrepackaged: {
       type: Boolean,
       default: false,
     },
