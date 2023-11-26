@@ -13,7 +13,9 @@ import server from './app.js';
 let DATABASE = config.db.dev;
 // Environment
 let env = config.env;
-if (env === 'production') DATABASE = config.db.prod;
+if (env === 'production') {
+  DATABASE = config.db.prod.replace('<PASSWORD>', config.db.password);
+}
 if (env === 'test') DATABASE = config.db.test;
 
 // Connect to MongoDB
