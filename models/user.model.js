@@ -9,9 +9,13 @@ import eUserRole from '../utilities/enums/e.user-role.js';
 
 const userSchema = new Schema(
   {
-    name: {
+    firstname: {
       type: String,
-      required: [true, 'Please tell us your name'],
+      required: [true, 'Please tell us your first name'],
+    },
+    lastname: {
+      type: String,
+      required: [true, 'Please tell us your last name'],
     },
     email: {
       type: String,
