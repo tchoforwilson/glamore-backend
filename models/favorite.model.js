@@ -10,7 +10,7 @@ const favoriteSchema = new Schema(
     product: {
       type: Schema.Types.ObjectId,
       ref: 'Product',
-      required: [true, 'Customer must be following a store'],
+      required: [true, 'Favorite must be a product'],
     },
   },
   {
