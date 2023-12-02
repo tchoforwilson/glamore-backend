@@ -47,6 +47,7 @@ const orderSchema = new Schema(
     status: {
       type: String,
       enum: [...Object.values(eOrderStatus)],
+      default: eOrderStatus.PENDING,
       required: true,
     },
   },
