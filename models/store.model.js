@@ -13,6 +13,7 @@ const storeSchema = new Schema(
       required: [true, 'Please provide store name'],
     },
     address: addressSchema,
+    backgroundImage: String,
     logo: String,
     location: pointSchema,
     phone: phoneSchema,
@@ -28,7 +29,7 @@ const storeSchema = new Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-  }
+  },
 );
 
 storeSchema.pre('save', async function (next) {
