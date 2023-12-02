@@ -5,7 +5,10 @@ import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router({ mergeParams: true });
 
-router.use(authController.protect);
+router.use(
+  authController.protect,
+  authController.restrictTo(eUserRole.CUSTOMER),
+);
 
 router.patch(
   '/toggle-follow',
@@ -13,7 +16,11 @@ router.patch(
   followController.toggleFollow,
 );
 
-router.get('/is-following', followController.isFollowing);
+router.get(
+  '/is-following',
+  followController.setUserStoreIds,
+  followController.isFollowing,
+);
 
 router.route('/').get(followController.getAllFollows);
 

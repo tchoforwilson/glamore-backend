@@ -5,7 +5,10 @@ import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router({ mergeParams: true });
 
-router.use(authController.protect);
+router.use(
+  authController.protect,
+  authController.restrictTo(eUserRole.CUSTOMER),
+);
 
 router.patch(
   '/toggle-favorite',
@@ -13,7 +16,11 @@ router.patch(
   favoriteController.toggleFavorite,
 );
 
-router.get('/is-favorite', favoriteController.isFavorite);
+router.get(
+  '/is-favorite',
+  favoriteController.setUserProductIds,
+  favoriteController.isFavorite,
+);
 
 router.route('/').get(favoriteController.getAllFavorites);
 
