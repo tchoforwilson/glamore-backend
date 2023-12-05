@@ -1,4 +1,5 @@
 import express, { json, urlencoded } from 'express';
+import swaggerDocs from './swagger.js';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
@@ -60,6 +61,7 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+app.disable('x-powered-by'); // less hackers know about our stack
 
 // ROUTES
 app.use(`${config.prefix}/auth`, authRouter);
@@ -82,6 +84,9 @@ io.on('connection', (socket) => {
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+// Server swaggger documentation
+swaggerDocs(app, config.port);
 
 // GLOBAL ERROR HANDLER
 app.use(globalErrorHandler);
