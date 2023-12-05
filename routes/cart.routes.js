@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authController from '../controllers/auth.controller.js';
 import cartController from '../controllers/cart.controller.js';
+import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router({ mergeParams: true });
 
@@ -12,7 +13,7 @@ router
   .route('/')
   .post(cartController.setCartCustomer, cartController.createCart)
   .get(
-    authController.restrictTo('admin', 'employee'),
+    authController.restrictTo(eUserRole.ADMIN, eUserRole.EMPLOYEE),
     cartController.getAllCarts,
   );
 

@@ -4,6 +4,7 @@ import authController from '../controllers/auth.controller.js';
 import storeController from '../controllers/store.controller.js';
 
 import productRouter from './product.routes.js';
+import followRouter from './follow.routes.js';
 import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router({ mergeParams: true });
@@ -11,6 +12,7 @@ const router = Router({ mergeParams: true });
 // POST /store/234fad4/products
 // GET /store/234fad4/products
 router.use('/:storeId/products', productRouter);
+router.use('/:storeId/follows', followRouter);
 router.route('/search', storeController.searchStore);
 router.route('/count', storeController.countStores);
 

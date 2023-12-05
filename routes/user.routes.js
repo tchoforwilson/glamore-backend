@@ -1,14 +1,24 @@
 import { Router } from 'express';
 import authController from '../controllers/auth.controller.js';
 import userController from '../controllers/user.controller.js';
+import cartRouter from './cart.routes.js';
 import favoriteRouter from './favorite.routes.js';
 import followRouter from './follow.routes.js';
+import reviewRouter from './review.routes.js';
 import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router();
 
 // Protected routes
 router.use(authController.protect);
+
+router.use(
+  '/:userId/carts',
+  authController.restrictTo(eUserRole.CUSTOMER),
+  cartRouter,
+);
+
+router.use('/:userId/reviews', reviewRouter);
 
 router.route(
   '/search',
@@ -29,14 +39,14 @@ router.post(
 
 router.get('/me', userController.getMe, userController.getUser);
 router.patch(
-  '/updateMe',
+  '/update-me',
   userController.uploadUserPhoto,
   userController.resizeUserPhoto,
   userController.updateMe,
 );
-router.patch('/deleteMe', userController.deleteMe);
 router.get('/my-shops', userController.setUserIdParam, followRouter);
 router.get('/my-favorites', userController.setUserIdParam, favoriteRouter);
+router.patch('/delete-me', userController.deleteMe);
 
 // Restrict all route after this to admin
 router.use(authController.restrictTo(eUserRole.ADMIN));

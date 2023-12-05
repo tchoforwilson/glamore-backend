@@ -2,9 +2,12 @@ import { Router } from 'express';
 
 import authController from '../controllers/auth.controller.js';
 import productController from '../controllers/product.controller.js';
+import reviewRouter from './review.routes.js';
 import eUserRole from '../utilities/enums/e.user-role.js';
 
 const router = Router({ mergeParams: true });
+
+router.use('/:productId/reviews', reviewRouter);
 
 router.get('/search', productController.searchProduct);
 router.get('/count', productController.countProducts);
