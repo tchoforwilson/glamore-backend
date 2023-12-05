@@ -53,7 +53,7 @@ const createSendToken = (user, eStatusCode, message, req, res) => {
  */
 const signup = catchAsync(async (req, res, next) => {
   // 1. Pick required values
-  const { name, email, password, passwordConfirm } = req.body;
+  const { firstname, lastname, email, password, passwordConfirm } = req.body;
 
   // 2. Check if user is already registered
   const user = await User.findOne({ email });
@@ -63,7 +63,13 @@ const signup = catchAsync(async (req, res, next) => {
   }
 
   // 3. Create new user
-  const newUser = await User.create({ name, email, password, passwordConfirm });
+  const newUser = await User.create({
+    firstname,
+    lastname,
+    email,
+    password,
+    passwordConfirm,
+  });
 
   // 4. Send response
   createSendToken(
