@@ -24,6 +24,105 @@ router.route(
   storeController.getStore,
 );
 
+// @breif route for updating store logo
+
+// @breif route for updating store background image
+/**
+ * @openapi
+ * '/api/stores/logo':
+ *  patch:
+ *     tags:
+ *     - Store Controller
+ *     summary: Update store logo
+ *     requestBody:
+ *      required: true
+ *      content:
+ *       application/form-data:
+ *        schema:
+ *           type: file
+ *           required:
+ *            - logo
+ *           properties:
+ *             logo:
+ *               type: file
+ *     responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *           schema:
+ *            type: object
+ *
+ *      400:
+ *        description: Not found
+ *      500:
+ *        description: Server Error
+ */
+router.patch(
+  '/logo',
+  authController.protect,
+  authController.restrictTo(eUserRole.STORE),
+  storeController.uploadLogo,
+  storeController.resizeLogo,
+  storeController.updateStore,
+);
+
+// @breif route for updating store background image
+/**
+ * @openapi
+ * '/api/stores/background-image':
+ *  patch:
+ *     tags:
+ *     - Store Controller
+ *     summary: Update store background image
+ *     requestBody:
+ *      required: true
+ *      content:
+ *       application/form-data:
+ *        schema:
+ *           type: file
+ *           required:
+ *            - backgroundImage
+ *           properties:
+ *             backgroundImage:
+ *               type: file
+ *     responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *           schema:
+ *            type: object
+ *      400:
+ *        description: Not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *               type: object
+ *               properties:
+ *                status: string
+ *                error:
+ *                  type: object
+ *                  properties:
+ *                    statusCode:
+ *                      type: integer
+ *                      default: 400
+ *                    status: string
+ *                    isOperational: boolean
+ *                message: string
+ *                stack: string
+ *      500:
+ *        description: Server Error
+ */
+router.patch(
+  '/background-image',
+  authController.protect,
+  authController.restrictTo(eUserRole.STORE),
+  storeController.uploadBackgroundImage,
+  storeController.resizeBackgroundImage,
+  storeController.updateStore,
+);
+
 router
   .route('/')
   .post(
