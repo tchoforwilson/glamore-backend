@@ -28,50 +28,85 @@ const router = Router();
  *                default: pass1234
  *     responses:
  *      200:
- *        description: User login successful
+ *        description: Success
+ *        example:
+ *          value:
+ *             token: string
  *      400:
- *        description: Email or password no provided or Incorrect password
+ *        description: Bad request
+ *        content:
+ *          application/json:
+ *           schema:
+ *            type: object
+ *            properties:
+ *             status: string
+ *             error:
+ *              type: object
+ *              properties:
+ *               statusCode:
+ *                 type: integer
+ *                 default: 400
+ *               status: string
+ *               isOperational: boolean
+ *             message: string
+ *             stack: string
  *      500:
  *        description: Server Error
  */
 router.post('/login', authController.login);
+/** POST Methods */
 /**
- * @swagger
- * components:
- *   schemas:
- *     User:
- *       type: object
- *       required:
- *         - firstname
- *         - lastname
- *         - email
- *         - phone
- *         - password
- *         - passwordConfirm
- *       properties:
- *         firstname:
- *           type: string
- *           description: User firstname
- *         lastname:
- *           type: string
- *           description: User lastname
- *         email:
- *           type: string
- *           description: User email
- *         phone:
- *           type: string
- *           description: User phone number
- *         password:
- *           type: string
- *           description: User password
- *         passwordConfirm: User password confirmation
- *       example:
- *         firstname: mary
- *         lastname: james
- *         email: maryjames@example.io
- *         phone: 654007889
- *         password: pass1234
- *         passwordConfirm: pass1234
+ * @openapi
+ * '/api/auth/signup':
+ *  post:
+ *     tags:
+ *     - Auth Controller
+ *     summary: sign up a new user (customer) by default
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *            type: object
+ *            required:
+ *              - firstname
+ *              - lastname
+ *              - email
+ *              - phone
+ *              - password
+ *              - passwordConfirm
+ *            properties:
+ *              firstname:
+ *                type: string
+ *                default: John
+ *              lastname:
+ *                type: string
+ *                default: smith
+ *              email:
+ *                type: string
+ *                default: user@mail.com
+ *              phone:
+ *                type: string
+ *                default: 677564433
+ *              password:
+ *                type: string
+ *                default: pass1234
+ *              passwordConfirm:
+ *                type: string
+ *                default: pass1234
+ *     responses:
+ *      201:
+ *        description: Created
+ *        content:
+ *          application/json:
+ *           schema:
+ *            type: object
+ *            properties:
+ *
+ *      400:
+ *        description: Email or password no provided or Incorrect password
+ *      500:
+ *        description: Server Error
  */
 router.post('/signup', authController.signup);
 

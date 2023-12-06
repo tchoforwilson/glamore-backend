@@ -63,6 +63,9 @@ const limiter = rateLimit({
 app.use(limiter);
 app.disable('x-powered-by'); // less hackers know about our stack
 
+// Server swaggger documentation
+swaggerDocs(app);
+
 // ROUTES
 app.use(`${config.prefix}/auth`, authRouter);
 app.use(`${config.prefix}/users`, userRouter);
@@ -84,9 +87,6 @@ io.on('connection', (socket) => {
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-
-// Server swaggger documentation
-swaggerDocs(app);
 
 // GLOBAL ERROR HANDLER
 app.use(globalErrorHandler);
