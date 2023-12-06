@@ -22,11 +22,14 @@ const setStoreId = (req, res, next) => {
 /// @breif middleware for uploading shop logo
 const uploadLogo = upload.single('logo');
 
+/// @breif middleware for uploading background image
+const uploadBackgroundImage = upload.single('backgroundImage');
+
 const resizeLogo = catchAsync(async (req, res, next) => {
   // 1. Check if file is present
   if (!req.file) return next();
 
-  const id = req.params.id || req.user.id;
+  const id = req.params.id || req.user.store.id;
 
   // 2. Change file name
   req.file.filename = `logo-${id}-${Date.now()}.png`;
@@ -41,11 +44,32 @@ const resizeLogo = catchAsync(async (req, res, next) => {
   next();
 });
 
+const resizeBackgroundImage = async (req, res, next) => {
+  // 1. Check if background image is present
+  if (!req.file) return next();
+
+  const id = req.params.id || req.user.store.id;
+
+  // 2. Change file name
+  req.file.filename = `background-image-${id}-${Date.now()}.jpeg`;
+  req.body.backgroundImage = req.file.filename;
+
+  // 3. Upload and resize background image
+  await sharp(req.file.buffer)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/images/background/${req.file.filename}`);
+
+  next();
+};
+
 export default {
   setStoreUser,
   setStoreId,
   uploadLogo,
   resizeLogo,
+  uploadBackgroundImage,
+  resizeBackgroundImage,
   createStore: factory.createOne(Store),
   getAllStores: factory.getAll(Store),
   getStore: factory.getOne(Store, { path: 'Product', select: '-__v' }),
