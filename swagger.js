@@ -1,8 +1,14 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+
 const options = {
   definition: {
     openapi: '3.1.0',
+    language: 'en-US', // Change response language. By default is 'en-US'
+    disableLogs: false, // Enable/Disable logs. By default is false
+    autoHeaders: false, // Enable/Disable automatic headers capture. By default is true
+    autoQuery: false, // Enable/Disable automatic query capture. By default is true
+    autoBody: false,
     info: {
       title: 'Glamore fashions',
       description: 'API documentation for glamore fashions',
@@ -31,15 +37,17 @@ const options = {
   // looks for configuration in specified directories
   apis: ['./routes/*.js'],
 };
+
 const swaggerSpecs = swaggerJsdoc(options);
-const swaggerDocs = (app, port) => {
+
+const swaggerDocs = (app) => {
   // Swagger Page
   app.use(
     '/docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpecs, { explorer: true }),
   );
-  //app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
   // Documentation in JSON format
   app.get('/docs.json', (req, res) => {

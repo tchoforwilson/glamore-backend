@@ -40,6 +40,13 @@ const config = {
     token: process.env.TWILIO_AUTH_TOKEN,
     from: process.env.TWILIO_FROM,
   },
+
+  /**
+   * @breif Swagger configurations
+   */
+  swagger: {
+    host: 'http://localhost:8000',
+  },
 };
 
 export default config;

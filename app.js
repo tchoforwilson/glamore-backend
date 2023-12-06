@@ -86,7 +86,7 @@ app.all('*', (req, res, next) => {
 });
 
 // Server swaggger documentation
-swaggerDocs(app, config.port);
+swaggerDocs(app);
 
 // GLOBAL ERROR HANDLER
 app.use(globalErrorHandler);

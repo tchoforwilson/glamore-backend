@@ -35,6 +35,44 @@ const router = Router();
  *        description: Server Error
  */
 router.post('/login', authController.login);
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - firstname
+ *         - lastname
+ *         - email
+ *         - phone
+ *         - password
+ *         - passwordConfirm
+ *       properties:
+ *         firstname:
+ *           type: string
+ *           description: User firstname
+ *         lastname:
+ *           type: string
+ *           description: User lastname
+ *         email:
+ *           type: string
+ *           description: User email
+ *         phone:
+ *           type: string
+ *           description: User phone number
+ *         password:
+ *           type: string
+ *           description: User password
+ *         passwordConfirm: User password confirmation
+ *       example:
+ *         firstname: mary
+ *         lastname: james
+ *         email: maryjames@example.io
+ *         phone: 654007889
+ *         password: pass1234
+ *         passwordConfirm: pass1234
+ */
 router.post('/signup', authController.signup);
 
 router.patch(
